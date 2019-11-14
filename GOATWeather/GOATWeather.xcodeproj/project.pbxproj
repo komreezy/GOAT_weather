@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,11 +11,20 @@
 		5AB452B90BD4B0D25BC3E612 /* Pods_GOATWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3A2FE50849BC73DC3C2313 /* Pods_GOATWeatherTests.framework */; };
 		69D50761237DBCD300E0A82C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50760237DBCD300E0A82C /* AppDelegate.swift */; };
 		69D50763237DBCD300E0A82C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50762237DBCD300E0A82C /* SceneDelegate.swift */; };
-		69D50765237DBCD300E0A82C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50764237DBCD300E0A82C /* ViewController.swift */; };
 		69D50768237DBCD400E0A82C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D50766237DBCD400E0A82C /* Main.storyboard */; };
 		69D5076A237DBCD500E0A82C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69D50769237DBCD500E0A82C /* Assets.xcassets */; };
 		69D5076D237DBCD500E0A82C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D5076B237DBCD500E0A82C /* LaunchScreen.storyboard */; };
 		69D50778237DBCD500E0A82C /* GOATWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50777237DBCD500E0A82C /* GOATWeatherTests.swift */; };
+		69D50783237DD21400E0A82C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50782237DD21400E0A82C /* HomeViewController.swift */; };
+		69D50785237DD22A00E0A82C /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50784237DD22A00E0A82C /* HomePresenter.swift */; };
+		69D50787237DD23A00E0A82C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50786237DD23A00E0A82C /* HomeInteractor.swift */; };
+		69D5078A237DD44800E0A82C /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50789237DD44800E0A82C /* Daily.swift */; };
+		69D5078C237DD7CC00E0A82C /* HomeGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5078B237DD7CC00E0A82C /* HomeGateway.swift */; };
+		69D5078E237DD7DE00E0A82C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5078D237DD7DE00E0A82C /* API.swift */; };
+		69D50790237DDD5D00E0A82C /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5078F237DDD5D00E0A82C /* AppEnvironment.swift */; };
+		69D50792237DE45600E0A82C /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50791237DE45600E0A82C /* HomeNavigator.swift */; };
+		69D50794237DE46000E0A82C /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50793237DE46000E0A82C /* Navigator.swift */; };
+		69D50796237DE61200E0A82C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D50795237DE61200E0A82C /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +43,6 @@
 		69D5075D237DBCD300E0A82C /* GOATWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GOATWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D50760237DBCD300E0A82C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69D50762237DBCD300E0A82C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		69D50764237DBCD300E0A82C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		69D50767237DBCD400E0A82C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		69D50769237DBCD500E0A82C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69D5076C237DBCD500E0A82C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +50,16 @@
 		69D50773237DBCD500E0A82C /* GOATWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GOATWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D50777237DBCD500E0A82C /* GOATWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GOATWeatherTests.swift; sourceTree = "<group>"; };
 		69D50779237DBCD500E0A82C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69D50782237DD21400E0A82C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		69D50784237DD22A00E0A82C /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		69D50786237DD23A00E0A82C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		69D50789237DD44800E0A82C /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		69D5078B237DD7CC00E0A82C /* HomeGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGateway.swift; sourceTree = "<group>"; };
+		69D5078D237DD7DE00E0A82C /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		69D5078F237DDD5D00E0A82C /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		69D50791237DE45600E0A82C /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
+		69D50793237DE46000E0A82C /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		69D50795237DE61200E0A82C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		ABAC26A9173EE443645D1E4E /* Pods-GOATWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOATWeatherTests.release.xcconfig"; path = "Target Support Files/Pods-GOATWeatherTests/Pods-GOATWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		B596FDBBB370B214120FA47A /* Pods_GOATWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GOATWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D991E19BC9F155244A5F2A5F /* Pods-GOATWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOATWeather.debug.xcconfig"; path = "Target Support Files/Pods-GOATWeather/Pods-GOATWeather.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +111,11 @@
 			children = (
 				69D50760237DBCD300E0A82C /* AppDelegate.swift */,
 				69D50762237DBCD300E0A82C /* SceneDelegate.swift */,
-				69D50764237DBCD300E0A82C /* ViewController.swift */,
+				69D5079A237DE6E300E0A82C /* Custom */,
+				69D50799237DE6D900E0A82C /* Models */,
+				69D50798237DE6C300E0A82C /* Networking */,
+				69D50797237DE69D00E0A82C /* Detail */,
+				69D50788237DD24200E0A82C /* Home */,
 				69D50766237DBCD400E0A82C /* Main.storyboard */,
 				69D50769237DBCD500E0A82C /* Assets.xcassets */,
 				69D5076B237DBCD500E0A82C /* LaunchScreen.storyboard */,
@@ -109,6 +131,51 @@
 				69D50779237DBCD500E0A82C /* Info.plist */,
 			);
 			path = GOATWeatherTests;
+			sourceTree = "<group>";
+		};
+		69D50788237DD24200E0A82C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				69D50782237DD21400E0A82C /* HomeViewController.swift */,
+				69D50784237DD22A00E0A82C /* HomePresenter.swift */,
+				69D50786237DD23A00E0A82C /* HomeInteractor.swift */,
+				69D5078B237DD7CC00E0A82C /* HomeGateway.swift */,
+				69D50791237DE45600E0A82C /* HomeNavigator.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		69D50797237DE69D00E0A82C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				69D50795237DE61200E0A82C /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		69D50798237DE6C300E0A82C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				69D5078D237DD7DE00E0A82C /* API.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		69D50799237DE6D900E0A82C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				69D50789237DD44800E0A82C /* Daily.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69D5079A237DE6E300E0A82C /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				69D50793237DE46000E0A82C /* Navigator.swift */,
+				69D5078F237DDD5D00E0A82C /* AppEnvironment.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		EA15EB04B9B793047D1DE738 /* Frameworks */ = {
@@ -128,7 +195,6 @@
 				3D38BD975B64304820480B07 /* Pods-GOATWeatherTests.debug.xcconfig */,
 				ABAC26A9173EE443645D1E4E /* Pods-GOATWeatherTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -143,6 +209,7 @@
 				69D50759237DBCD300E0A82C /* Sources */,
 				69D5075A237DBCD300E0A82C /* Frameworks */,
 				69D5075B237DBCD300E0A82C /* Resources */,
+				CDE792744C28E58673A85216 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -275,6 +342,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CDE792744C28E58673A85216 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GOATWeather/Pods-GOATWeather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GOATWeather/Pods-GOATWeather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GOATWeather/Pods-GOATWeather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -282,9 +366,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D50765237DBCD300E0A82C /* ViewController.swift in Sources */,
+				69D50796237DE61200E0A82C /* DetailViewController.swift in Sources */,
 				69D50761237DBCD300E0A82C /* AppDelegate.swift in Sources */,
 				69D50763237DBCD300E0A82C /* SceneDelegate.swift in Sources */,
+				69D50787237DD23A00E0A82C /* HomeInteractor.swift in Sources */,
+				69D50785237DD22A00E0A82C /* HomePresenter.swift in Sources */,
+				69D50794237DE46000E0A82C /* Navigator.swift in Sources */,
+				69D50790237DDD5D00E0A82C /* AppEnvironment.swift in Sources */,
+				69D50783237DD21400E0A82C /* HomeViewController.swift in Sources */,
+				69D5078A237DD44800E0A82C /* Daily.swift in Sources */,
+				69D5078E237DD7DE00E0A82C /* API.swift in Sources */,
+				69D50792237DE45600E0A82C /* HomeNavigator.swift in Sources */,
+				69D5078C237DD7CC00E0A82C /* HomeGateway.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

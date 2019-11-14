@@ -5,7 +5,7 @@ target 'GOATWeather' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for GOATWeather
+  pod 'Alamofire'
 
   target 'GOATWeatherTests' do
     inherit! :search_paths

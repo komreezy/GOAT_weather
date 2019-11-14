@@ -35,8 +35,7 @@ extension HomePresenterClass: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueCell(of: UITableViewCell.self, for: indexPath)
-        cell.textLabel?.text = dailies[indexPath.row].summary
+        let cell = tableView.dequeueCell(of: HomeTableViewCell.self, for: indexPath)
         return cell
     }
 }

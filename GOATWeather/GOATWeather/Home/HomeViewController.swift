@@ -17,7 +17,7 @@ final class HomeViewController: UIViewController {
         let table = UITableView(frame: .zero)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.estimatedRowHeight = 80.0
-        table.register(cell: UITableViewCell.self)
+        table.register(cell: HomeTableViewCell.self)
         return table
     }()
 

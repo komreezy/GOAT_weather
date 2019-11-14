@@ -6,7 +6,7 @@
 //  Copyright © 2019 Komran Ghahremani. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol HomeInteractor {
     var presenter: HomePresenter { get }
@@ -15,7 +15,7 @@ protocol HomeInteractor {
     func askUserLocationPermission()
 }
 
-final class HomeInteractorClass: HomeInteractor {
+final class HomeInteractorClass: NSObject, HomeInteractor {
     var presenter: HomePresenter
 
     init(presenter: HomePresenter) {
@@ -28,4 +28,7 @@ final class HomeInteractorClass: HomeInteractor {
 
     func askUserLocationPermission() {
     }
+}
+
+extension HomeInteractorClass: UITableViewDelegate {
 }

@@ -17,16 +17,30 @@ final class HomeViewController: UIViewController {
         let table = UITableView(frame: .zero)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.estimatedRowHeight = 80.0
+        table.register(cell: UITableViewCell.self)
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
 
         let presenter = HomePresenterClass(viewController: self)
         self.presenter = presenter
-        self.interactor = HomeInteractorClass(presenter: presenter)
+        tableView.dataSource = presenter
+
+        let interactor = HomeInteractorClass(presenter: presenter)
+        self.interactor = interactor
+        tableView.delegate = interactor
+
+        view.backgroundColor = .white
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+        ])
     }
 
     func refreshTableView() {

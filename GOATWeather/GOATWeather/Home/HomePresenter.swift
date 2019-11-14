@@ -17,7 +17,7 @@ protocol HomePresenter {
 
 final class HomePresenterClass: NSObject, HomePresenter {
     var viewController: HomeViewController
-    var dailies: [Daily] = []
+    var dailies: [Daily] = [Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: "")]
 
     init(viewController: HomeViewController) {
         self.viewController = viewController
@@ -36,6 +36,7 @@ extension HomePresenterClass: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(of: UITableViewCell.self, for: indexPath)
+        cell.textLabel?.text = dailies[indexPath.row].summary
         return cell
     }
 }

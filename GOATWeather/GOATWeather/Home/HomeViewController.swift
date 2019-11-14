@@ -9,15 +9,11 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-    let navigator: HomeNavigator
-
-    init(navigator: HomeNavigator) {
-        self.navigator = navigator
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var navigator: HomeNavigator {
+        guard let navigationController = navigationController else {
+            fatalError("HomeViewController must be initialized with a navigation controller")
+        }
+        return HomeNavigator(navigationController: navigationController)
     }
 
     override func viewDidLoad() {

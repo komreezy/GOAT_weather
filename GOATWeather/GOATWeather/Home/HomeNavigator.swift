@@ -27,7 +27,7 @@ final class HomeNavigator: Navigator {
 
     private func makeViewController(for destination: Destination) -> UIViewController {
         switch destination {
-        case .home: return HomeViewController()
+        case .home: return UIViewController()
         case .detail(let daily): return DetailViewController(daily: daily)
         }
     }

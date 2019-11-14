@@ -9,16 +9,27 @@
 import UIKit
 
 final class HomeViewController: UIViewController {
-    var navigator: HomeNavigator {
-        guard let navigationController = navigationController else {
-            fatalError("HomeViewController must be initialized with a navigation controller")
-        }
-        return HomeNavigator(navigationController: navigationController)
-    }
+    var navigator: HomeNavigator?
+    var interactor: HomeInteractor?
+    var presenter: HomePresenter?
+
+    private let tableView: UITableView = {
+        let table = UITableView(frame: .zero)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.estimatedRowHeight = 80.0
+        return table
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .white
+
+        let presenter = HomePresenterClass(viewController: self)
+        self.presenter = presenter
+        self.interactor = HomeInteractorClass(presenter: presenter)
     }
-    
+
+    func refreshTableView() {
+        tableView.reloadData()
+    }
 }

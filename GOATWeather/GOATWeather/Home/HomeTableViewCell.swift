@@ -30,14 +30,12 @@ final class HomeTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 35.0)
-        label.text = "☀️"
         return label
     }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18.0)
-        label.text = "H: 73° L: 21°"
         return label
     }()
 
@@ -46,7 +44,6 @@ final class HomeTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = .lightGray
         label.numberOfLines = 0
-        label.text = "Mixed precipitation throughout the week, with temperatures falling to 39°F on Saturday."
         return label
     }()
 

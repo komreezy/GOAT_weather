@@ -9,8 +9,7 @@
 import Foundation
 import Alamofire
 
-typealias JSON = [String: Any]
-typealias FetchCompletionHandler = (Result<JSON>) -> Void
+typealias FetchCompletionHandler = (Result<Data>) -> Void
 
 protocol Requesting {
     var queue: DispatchQueue { get }
@@ -22,13 +21,12 @@ extension Requesting {
     func request(for route: Route, completion: @escaping FetchCompletionHandler) {
         do {
             let req = try route.asURLRequest()
-            Alamofire.request(req)
-                .responseJSON(queue: queue, options: .allowFragments) { response in
-                    if let json = response.result.value as? JSON, response.error == nil {
-                        completion(.success(json))
-                    } else {
-                        completion(.failure(HomeAPIError.general(response.error?.localizedDescription)))
-                    }
+            Alamofire.request(req).responseData(queue: queue) { (response) in
+                if let json = response.result.value, response.error == nil {
+                    completion(.success(json))
+                } else {
+                    completion(.failure(HomeAPIError.general(response.error?.localizedDescription)))
+                }
             }
         } catch {
             fatalError("cant do that request")

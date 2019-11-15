@@ -17,7 +17,7 @@ protocol HomePresenter {
 
 final class HomePresenterClass: NSObject, HomePresenter {
     var viewController: HomeViewController
-    var dailies: [Daily] = [Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: ""),Daily(id: 0, time: 0, high: 0, low: 0, summary: "Hello", uvIndex: 0, humidity: 0, icon: "")]
+    var dailies: [Daily] = []
 
     init(viewController: HomeViewController) {
         self.viewController = viewController
@@ -31,7 +31,7 @@ final class HomePresenterClass: NSObject, HomePresenter {
 
 extension HomePresenterClass: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dailies.count
+        return 5 //dailies.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

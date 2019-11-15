@@ -53,10 +53,28 @@ final class HomeViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
         ])
+
+        HomeGateway().request(for: HomeGateway.APIRoute.forecast(lat: 34.0522, lng: 118.2437)) { (result) in
+            switch result {
+            case .success(let json): self.parse(json: json)
+            case .failure(let error): print(error)
+            }
+        }
     }
 
     func refreshTableView() {
         header.configure(with: presenter!.dailies[0])
         tableView.reloadData()
+    }
+
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+
+        do {
+            let jsonPetitions = try decoder.decode(Dailies.self, from: json)
+            print(jsonPetitions)
+        } catch let error {
+            print(error)
+        }
     }
 }

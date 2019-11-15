@@ -8,6 +8,27 @@
 
 import Foundation
 
+struct Dailies: Codable {
+    var dailies: [Daily]
+
+    enum CodingKeys: String, CodingKey {
+        case daily
+        case data
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let daily = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
+        dailies = try daily.decode([Daily].self, forKey: .data)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        var daily = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
+        try daily.encode(dailies, forKey: .data)
+    }
+}
+
 struct Daily: Codable {
     var time: Int
     var high: Float
@@ -18,8 +39,6 @@ struct Daily: Codable {
     var icon: String
 
     enum CodingKeys: String, CodingKey {
-        case daily
-        case data
         case time
         case high = "temperatureHigh"
         case low = "temperatureLow"
@@ -31,27 +50,23 @@ struct Daily: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let daily = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
-        let data = try daily.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        time = try data.decode(Int.self, forKey: .time)
-        high = try data.decode(Float.self, forKey: .high)
-        low = try data.decode(Float.self, forKey: .low)
-        summary = try data.decode(String.self, forKey: .summary)
-        uvIndex = try data.decode(Int.self, forKey: .uvIndex)
-        humidity = try data.decode(Float.self, forKey: .humidity)
-        icon = try data.decode(String.self, forKey: .icon)
+        time = try container.decode(Int.self, forKey: .time)
+        high = try container.decode(Float.self, forKey: .high)
+        low = try container.decode(Float.self, forKey: .low)
+        summary = try container.decode(String.self, forKey: .summary)
+        uvIndex = try container.decode(Int.self, forKey: .uvIndex)
+        humidity = try container.decode(Float.self, forKey: .humidity)
+        icon = try container.decode(String.self, forKey: .icon)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        var daily = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
-        var data = daily.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
-        try data.encode(time, forKey: .time)
-        try data.encode(high, forKey: .high)
-        try data.encode(low, forKey: .low)
-        try data.encode(summary, forKey: .summary)
-        try data.encode(uvIndex, forKey: .uvIndex)
-        try data.encode(humidity, forKey: .humidity)
-        try data.encode(icon, forKey: .icon)
+        try container.encode(time, forKey: .time)
+        try container.encode(high, forKey: .high)
+        try container.encode(low, forKey: .low)
+        try container.encode(summary, forKey: .summary)
+        try container.encode(uvIndex, forKey: .uvIndex)
+        try container.encode(humidity, forKey: .humidity)
+        try container.encode(icon, forKey: .icon)
     }
 }

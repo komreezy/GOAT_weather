@@ -30,7 +30,6 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBar()
 
         let presenter = HomePresenterClass(viewController: self)
         self.presenter = presenter
@@ -58,13 +57,24 @@ final class HomeViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
         ])
+    }
 
-        interactor.startUpdatingLocation()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        configureNavBar()
+        interactor?.startUpdatingLocation()
     }
 
     private func configureNavBar() {
-        guard !CLLocationManager.locationServicesEnabled() else { return }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: self, action: #selector(requestUserLocationPermission))
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: self, action: #selector(requestUserLocationPermission))
+        case .denied: presenter?.presentError(with: "Please go to settings to change the location authorization services")
+        case .authorizedWhenInUse, .authorizedAlways, .restricted: return
+        @unknown default: fatalError("Unknown default authorization status")
+        }
+        guard CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse else { return }
+
     }
 
     func refreshTableView(with current: Currently) {

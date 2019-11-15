@@ -37,6 +37,7 @@ struct Currently: Codable {
     var time: Int
     var temperature: Int
     var summary: String
+    var precipProbability: Float
     var uvIndex: Int
     var humidity: Float
     var icon: String
@@ -46,6 +47,7 @@ struct Currently: Codable {
         time = try container.decode(Int.self, forKey: .time)
         temperature = Int(try container.decode(Float.self, forKey: .temperature))
         summary = try container.decode(String.self, forKey: .summary)
+        precipProbability = try container.decode(Float.self, forKey: .precipProbability)
         uvIndex = try container.decode(Int.self, forKey: .uvIndex)
         humidity = try container.decode(Float.self, forKey: .humidity)
         icon = try container.decode(String.self, forKey: .icon)
@@ -57,6 +59,7 @@ struct Daily: Codable {
     var high: Int
     var low: Int
     var summary: String
+    var precipProbability: Float
     var uvIndex: Int
     var humidity: Float
     var icon: String
@@ -66,6 +69,7 @@ struct Daily: Codable {
         case high = "temperatureHigh"
         case low = "temperatureLow"
         case summary
+        case precipProbability
         case uvIndex
         case humidity
         case icon
@@ -77,6 +81,7 @@ struct Daily: Codable {
         high = Int(try container.decode(Float.self, forKey: .high))
         low = Int(try container.decode(Float.self, forKey: .low))
         summary = try container.decode(String.self, forKey: .summary)
+        precipProbability = try container.decode(Float.self, forKey: .precipProbability)
         uvIndex = try container.decode(Int.self, forKey: .uvIndex)
         humidity = try container.decode(Float.self, forKey: .humidity)
         icon = try container.decode(String.self, forKey: .icon)
@@ -87,6 +92,7 @@ struct Daily: Codable {
         try container.encode(time, forKey: .time)
         try container.encode(high, forKey: .high)
         try container.encode(low, forKey: .low)
+        try container.encode(precipProbability, forKey: .precipProbability)
         try container.encode(summary, forKey: .summary)
         try container.encode(uvIndex, forKey: .uvIndex)
         try container.encode(humidity, forKey: .humidity)

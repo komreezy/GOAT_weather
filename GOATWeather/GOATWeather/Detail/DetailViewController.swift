@@ -118,7 +118,7 @@ final class DetailViewController: UIViewController {
         temperatureLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
         summaryLabel.text = "\(daily.summary)"
         humidityLabel.text = "Humidity:\n\(daily.humidity * 100)%"
-        precipitationLabel.text = "Precipitation:\n\(daily.humidity * 100)%"
+        precipitationLabel.text = "Precipitation:\n\(daily.precipProbability * 100)%"
         uvIndexLabel.text = "UV Index:\n\(daily.uvIndex)"
     }
 }

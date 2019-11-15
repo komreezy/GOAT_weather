@@ -8,6 +8,8 @@
 
 import UIKit
 
+// Old code that I wrote that I like to use for table views
+
 protocol Reusable: class {
     static var reuseIdentifier: String { get }
 }
@@ -35,28 +37,6 @@ extension UITableView {
 
     func dequeueHeaderFooter<T: UITableViewHeaderFooterView>(of viewType: T.Type) -> T {
         guard let view = self.dequeueReusableHeaderFooterView(withIdentifier: viewType.reuseIdentifier) as? T else { fatalError("Unexpected header/footer reuse identifier") }
-        return view
-    }
-}
-
-extension UICollectionReusableView: Reusable {}
-
-extension UICollectionView {
-    func register<T: UICollectionViewCell>(cell cellType: T.Type) {
-        self.register(cellType.self, forCellWithReuseIdentifier: cellType.reuseIdentifier)
-    }
-
-    func dequeueCell<T: UICollectionViewCell>(of cellType: T.Type, for indexPath: IndexPath) -> T {
-        guard let cell = self.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else { fatalError("Unexpected cell reuse identifier") }
-        return cell
-    }
-
-    func register<T: UICollectionReusableView>(view viewType: T.Type, forSupplementaryViewOfKind kind: String) {
-        self.register(viewType.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: viewType.reuseIdentifier)
-    }
-
-    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(of viewType: T.Type, kind: String, for indexPath: IndexPath) -> T {
-        guard let view = self.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: viewType.reuseIdentifier, for: indexPath) as? T else { fatalError("Unexpected reusable supplementary view reuse identifier") }
         return view
     }
 }

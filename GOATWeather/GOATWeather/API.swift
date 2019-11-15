@@ -42,8 +42,9 @@ protocol Route {
 
 extension Route {
     func asURLRequest() throws -> URLRequest {
-        let urlwithPercent = AppEnvironment.baseURLString.appending(path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: urlwithPercent)!
+        guard let urlwithPercent = AppEnvironment.baseURLString.appending(path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: urlwithPercent) else {
+            fatalError("Invalid URL Request")
+        }
 
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue

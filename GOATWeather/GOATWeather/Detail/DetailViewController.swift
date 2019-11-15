@@ -12,12 +12,12 @@ final class DetailViewController: UIViewController {
     private let navigator: HomeNavigator
     private let presenter: DetailPresenter
 
-    private let detailsHorizontalStackView: UIStackView = {
+    private let detailsVerticalStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         stack.alignment = .fill
-        stack.axis = .horizontal
+        stack.axis = .vertical
         return stack
     }()
 
@@ -46,22 +46,22 @@ final class DetailViewController: UIViewController {
 
     private let humidityLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18.0)
-        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
 
     private let precipitationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18.0)
-        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
 
     private let uvIndexLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18.0)
-        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        label.textAlignment = .center
         return label
     }()
 
@@ -80,18 +80,18 @@ final class DetailViewController: UIViewController {
         view.backgroundColor = .white
         configureDetails()
 
-        detailsHorizontalStackView.addArrangedSubview(PaddingView(constantWidth: 8.0))
-        detailsHorizontalStackView.addArrangedSubview(humidityLabel)
-        detailsHorizontalStackView.addArrangedSubview(PaddingView(constantWidth: 16.0))
-        detailsHorizontalStackView.addArrangedSubview(precipitationLabel)
-        detailsHorizontalStackView.addArrangedSubview(PaddingView(constantWidth: 16.0))
-        detailsHorizontalStackView.addArrangedSubview(uvIndexLabel)
-        detailsHorizontalStackView.addArrangedSubview(PaddingView())
+        detailsVerticalStackView.addArrangedSubview(PaddingView(constantWidth: 8.0))
+        detailsVerticalStackView.addArrangedSubview(humidityLabel)
+        detailsVerticalStackView.addArrangedSubview(PaddingView())
+        detailsVerticalStackView.addArrangedSubview(precipitationLabel)
+        detailsVerticalStackView.addArrangedSubview(PaddingView())
+        detailsVerticalStackView.addArrangedSubview(uvIndexLabel)
+        detailsVerticalStackView.addArrangedSubview(PaddingView())
 
         view.addSubview(iconImage)
         view.addSubview(temperatureLabel)
         view.addSubview(summaryLabel)
-        view.addSubview(detailsHorizontalStackView)
+        view.addSubview(detailsVerticalStackView)
         NSLayoutConstraint.activate([
             iconImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             iconImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24.0),
@@ -104,10 +104,10 @@ final class DetailViewController: UIViewController {
             summaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             summaryLabel.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant: 8.0),
 
-            detailsHorizontalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0),
-            detailsHorizontalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0),
-            detailsHorizontalStackView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 16.0),
-            detailsHorizontalStackView.heightAnchor.constraint(equalToConstant: 60.0)
+            detailsVerticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24.0),
+            detailsVerticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24.0),
+            detailsVerticalStackView.topAnchor.constraint(equalTo: summaryLabel.bottomAnchor, constant: 16.0),
+            detailsVerticalStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40.0),
         ])
     }
 
@@ -117,8 +117,8 @@ final class DetailViewController: UIViewController {
         iconImage.text = WeatherIconBuilder().iconForString(daily.icon)
         temperatureLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
         summaryLabel.text = "\(daily.summary)"
-        humidityLabel.text = "Humidity:\n\(daily.humidity * 100)%"
-        precipitationLabel.text = "Precipitation:\n\(daily.precipProbability * 100)%"
-        uvIndexLabel.text = "UV Index:\n\(daily.uvIndex)"
+        humidityLabel.text = "Humidity: \(daily.humidity * 100)%"
+        precipitationLabel.text = "Precipitation: \(daily.precipProbability * 100)%"
+        uvIndexLabel.text = "UV Index: \(daily.uvIndex)"
     }
 }

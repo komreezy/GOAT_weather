@@ -12,6 +12,11 @@ final class HomeViewController: UIViewController {
     var navigator: HomeNavigator?
     var interactor: HomeInteractor?
     var presenter: HomePresenter?
+    let header: CurrentWeatherHeaderView = {
+        let view = CurrentWeatherHeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero)
@@ -34,17 +39,24 @@ final class HomeViewController: UIViewController {
         tableView.delegate = interactor
 
         view.backgroundColor = .white
+        view.addSubview(header)
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
+            header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            header.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            header.heightAnchor.constraint(equalToConstant: 185.0),
+            
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
         ])
     }
 
     func refreshTableView() {
+        header.configure(with: presenter!.dailies[0])
         tableView.reloadData()
     }
 }

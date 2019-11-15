@@ -11,9 +11,7 @@ import Alamofire
 
 typealias FetchCompletionHandler = (Result<Data>) -> Void
 
-protocol Requesting {
-    var queue: DispatchQueue { get }
-    
+protocol Requesting {    
     func request(for route: Route, completion: @escaping FetchCompletionHandler)
 }
 
@@ -21,7 +19,7 @@ extension Requesting {
     func request(for route: Route, completion: @escaping FetchCompletionHandler) {
         do {
             let req = try route.asURLRequest()
-            Alamofire.request(req).responseData(queue: queue) { (response) in
+            Alamofire.request(req).responseData() { (response) in
                 if let json = response.result.value, response.error == nil {
                     completion(.success(json))
                 } else {

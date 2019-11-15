@@ -9,30 +9,53 @@
 import Foundation
 
 struct Dailies: Codable {
+    var currently: Currently
     var dailies: [Daily]
 
     enum CodingKeys: String, CodingKey {
         case daily
         case data
+        case currently
     }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let daily = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
         dailies = try daily.decode([Daily].self, forKey: .data)
+        currently = try container.decode(Currently.self, forKey: .currently)
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(currently, forKey: .currently)
         var daily = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .daily)
         try daily.encode(dailies, forKey: .data)
     }
 }
 
+struct Currently: Codable {
+    var time: Int
+    var temperature: Int
+    var summary: String
+    var uvIndex: Int
+    var humidity: Float
+    var icon: String
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        time = try container.decode(Int.self, forKey: .time)
+        temperature = Int(try container.decode(Float.self, forKey: .temperature))
+        summary = try container.decode(String.self, forKey: .summary)
+        uvIndex = try container.decode(Int.self, forKey: .uvIndex)
+        humidity = try container.decode(Float.self, forKey: .humidity)
+        icon = try container.decode(String.self, forKey: .icon)
+    }
+}
+
 struct Daily: Codable {
     var time: Int
-    var high: Float
-    var low: Float
+    var high: Int
+    var low: Int
     var summary: String
     var uvIndex: Int
     var humidity: Float
@@ -51,8 +74,8 @@ struct Daily: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         time = try container.decode(Int.self, forKey: .time)
-        high = try container.decode(Float.self, forKey: .high)
-        low = try container.decode(Float.self, forKey: .low)
+        high = Int(try container.decode(Float.self, forKey: .high))
+        low = Int(try container.decode(Float.self, forKey: .low))
         summary = try container.decode(String.self, forKey: .summary)
         uvIndex = try container.decode(Int.self, forKey: .uvIndex)
         humidity = try container.decode(Float.self, forKey: .humidity)

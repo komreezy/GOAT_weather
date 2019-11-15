@@ -10,8 +10,6 @@ import Foundation
 import Alamofire
 
 final class HomeGateway: Gateway, Requesting {
-    let queue = DispatchQueue(label: "com.GOAT.networking", qos: .utility, attributes: [.concurrent])
-
     enum APIRoute: Route {
         case forecast(lat: Float, lng: Float)
         case timeMachine(lat: Float, lng: Float, time: Int)

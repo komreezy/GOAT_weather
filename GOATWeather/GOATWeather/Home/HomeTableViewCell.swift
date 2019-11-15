@@ -77,6 +77,8 @@ final class HomeTableViewCell: UITableViewCell {
     }
 
     func configure(with daily: Daily) {
-
+        iconImage.text = WeatherIconBuilder().iconForString(daily.icon)
+        titleLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
+        subtitleLabel.text = daily.summary
     }
 }

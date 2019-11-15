@@ -12,7 +12,7 @@ protocol HomePresenter {
     var viewController: HomeViewController { get }
     var dailies: [Daily] { get set }
 
-    func refreshWeather(with dailies: [Daily])
+    func refreshWeather(with dailies: [Daily], current: Currently)
 }
 
 final class HomePresenterClass: NSObject, HomePresenter {
@@ -23,19 +23,20 @@ final class HomePresenterClass: NSObject, HomePresenter {
         self.viewController = viewController
     }
 
-    func refreshWeather(with dailies: [Daily]) {
+    func refreshWeather(with dailies: [Daily], current: Currently) {
         self.dailies = dailies
-        viewController.refreshTableView()
+        viewController.refreshTableView(with: current)
     }
 }
 
 extension HomePresenterClass: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 //dailies.count
+        return dailies.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(of: HomeTableViewCell.self, for: indexPath)
+        cell.configure(with: dailies[indexPath.row])
         return cell
     }
 }

@@ -13,8 +13,7 @@ final class CurrentWeatherHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 35.0)
-        label.text = "☀️"
+        label.font = UIFont.systemFont(ofSize: 40.0)
         return label
     }()
 
@@ -22,8 +21,7 @@ final class CurrentWeatherHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 24.0)
-        label.text = "87°"
+        label.font = UIFont.boldSystemFont(ofSize: 32.0)
         return label
     }()
 
@@ -31,10 +29,9 @@ final class CurrentWeatherHeaderView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 14.0)
+        label.font = UIFont.systemFont(ofSize: 16.0)
         label.textColor = .lightGray
         label.numberOfLines = 0
-        label.text = "lkahsdlkfjhalskjdhflaksjhdflkjas laksjdhflkajhsdlfkjhasd lskdjfh"
         return label
     }()
 
@@ -47,8 +44,8 @@ final class CurrentWeatherHeaderView: UIView {
         NSLayoutConstraint.activate([
             iconView.centerXAnchor.constraint(equalTo: centerXAnchor),
             iconView.topAnchor.constraint(equalTo: topAnchor, constant: 24.0),
-            iconView.heightAnchor.constraint(equalToConstant: 40.0),
-            iconView.widthAnchor.constraint(equalToConstant: 40.0),
+            iconView.heightAnchor.constraint(equalToConstant: 55.0),
+            iconView.widthAnchor.constraint(equalToConstant: 55.0),
 
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 16.0),
@@ -64,7 +61,9 @@ final class CurrentWeatherHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with daily: Daily) {
-        
+    func configure(with current: Currently) {
+        iconView.text = WeatherIconBuilder().iconForString(current.icon)
+        titleLabel.text = "\(current.temperature)°"
+        subtitleLabel.text = current.summary
     }
 }

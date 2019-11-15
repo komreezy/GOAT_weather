@@ -113,6 +113,7 @@ final class DetailViewController: UIViewController {
 
     private func configureDetails() {
         let daily = presenter.daily
+        title = DateStringBuilder(time: Double(daily.time)).string
         iconImage.text = WeatherIconBuilder().iconForString(daily.icon)
         temperatureLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
         summaryLabel.text = "\(daily.summary)"

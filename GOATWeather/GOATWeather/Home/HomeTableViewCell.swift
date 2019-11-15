@@ -41,6 +41,12 @@ final class HomeTableViewCell: UITableViewCell {
 
     private let subtitleLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 14.0)
+        return label
+    }()
+
+    private let detailLabel: UILabel = {
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14.0)
         label.textColor = .lightGray
         label.numberOfLines = 0
@@ -58,6 +64,7 @@ final class HomeTableViewCell: UITableViewCell {
         verticalStackView.addArrangedSubview(PaddingView(constantHeight: 8.0))
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
+        verticalStackView.addArrangedSubview(detailLabel)
         verticalStackView.addArrangedSubview(PaddingView(constantHeight: 8.0))
 
         contentView.addSubview(horizontalStackView)
@@ -75,7 +82,8 @@ final class HomeTableViewCell: UITableViewCell {
 
     func configure(with daily: Daily) {
         iconImage.text = WeatherIconBuilder().iconForString(daily.icon)
-        titleLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
-        subtitleLabel.text = daily.summary
+        titleLabel.text = DateStringBuilder(time: Double(daily.time)).string
+        subtitleLabel.text = "H: \(daily.high)° | L: \(daily.low)°"
+        detailLabel.text = daily.summary
     }
 }

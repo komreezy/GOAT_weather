@@ -26,6 +26,14 @@ final class HomeInteractorClass: NSObject, HomeInteractor {
     }
 
     func fetchWeather(lat: CLLocationDegrees, lng: CLLocationDegrees) {
+        CLLocation(latitude: lat, longitude: lng).fetchCityAndCountry { (city, country, error) in
+            guard error == nil, let city = city, let country = country else {
+                self.presenter.presentError(with: error?.localizedDescription ?? "Could not fetch current weather conditions")
+                return
+            }
+            self.presenter.updateTitle("\(city), \(country)")
+        }
+
         HomeGateway().request(for: HomeGateway.APIRoute.forecast(lat: lat, lng: lng)) { (result) in
             switch result {
             case .success(let json):
@@ -55,9 +63,13 @@ final class HomeInteractorClass: NSObject, HomeInteractor {
         do {
             return try decoder.decode(Dailies.self, from: json)
         } catch let error {
-            print(error)
+            self.presenter.presentError(with: error.localizedDescription)
             return nil
         }
+    }
+
+    private func presentError(with description: String) {
+        presenter.presentError(with: description)
     }
 }
 

@@ -11,14 +11,18 @@ import UIKit
 protocol HomePresenter {
     var viewController: HomeViewController { get }
     var dailies: [Daily] { get set }
+    var title: String? { get set }
 
     func refreshWeather(with dailies: [Daily], current: Currently)
     func showDetail(for index: IndexPath)
+    func updateTitle(_ title: String?)
+    func presentError(with description: String)
 }
 
 final class HomePresenterClass: NSObject, HomePresenter {
     var viewController: HomeViewController
     var dailies: [Daily] = []
+    var title: String?
 
     init(viewController: HomeViewController) {
         self.viewController = viewController
@@ -32,6 +36,16 @@ final class HomePresenterClass: NSObject, HomePresenter {
     func showDetail(for index: IndexPath) {
         let daily = dailies[index.row]
         viewController.navigator?.route(to: .detail(daily))
+    }
+
+    func updateTitle(_ title: String?) {
+        viewController.title = title
+    }
+
+    func presentError(with description: String) {
+        let alert = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
     }
 }
 

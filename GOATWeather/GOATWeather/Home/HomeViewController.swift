@@ -29,6 +29,7 @@ final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavBar()
 
         let presenter = HomePresenterClass(viewController: self)
         self.presenter = presenter
@@ -58,11 +59,16 @@ final class HomeViewController: UIViewController {
     }
 
     private func configureNavBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: interactor, action: #selector(HomeInteractorClass.askUserLocationPermission))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: self, action: #selector(requestUserLocationPermission))
     }
 
     func refreshTableView(with current: Currently) {
         tableView.reloadData()
         header.configure(with: current)
+    }
+
+    @objc
+    private func requestUserLocationPermission() {
+        interactor?.askUserLocationPermission()
     }
 }

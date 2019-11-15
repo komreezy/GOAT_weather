@@ -13,8 +13,8 @@ protocol HomeInteractor {
     var presenter: HomePresenter { get }
 
     func fetchWeather(lat: CLLocationDegrees, lng: CLLocationDegrees)
-    func askUserLocationPermission()
     func startUpdatingLocation()
+    func askUserLocationPermission()
 }
 
 final class HomeInteractorClass: NSObject, HomeInteractor {

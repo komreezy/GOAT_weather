@@ -11,8 +11,8 @@ import Alamofire
 
 final class HomeGateway: Gateway, Requesting {
     enum APIRoute: Route {
-        case forecast(lat: Float, lng: Float)
-        case timeMachine(lat: Float, lng: Float, time: Int)
+        case forecast(lat: Double, lng: Double)
+        case timeMachine(lat: Double, lng: Double, time: Int)
 
         var method: HTTPMethod {
             switch self {

@@ -54,7 +54,11 @@ final class HomeViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: header.bottomAnchor),
         ])
 
-        interactor.fetchWeather()
+        interactor.startUpdatingLocation()
+    }
+
+    private func configureNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: interactor, action: #selector(HomeInteractorClass.askUserLocationPermission))
     }
 
     func refreshTableView(with current: Currently) {

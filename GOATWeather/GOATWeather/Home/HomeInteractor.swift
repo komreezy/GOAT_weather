@@ -7,23 +7,26 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol HomeInteractor {
     var presenter: HomePresenter { get }
 
-    func fetchWeather()
+    func fetchWeather(lat: CLLocationDegrees, lng: CLLocationDegrees)
     func askUserLocationPermission()
+    func startUpdatingLocation()
 }
 
 final class HomeInteractorClass: NSObject, HomeInteractor {
     var presenter: HomePresenter
+    private let locationManager = CLLocationManager()
 
     init(presenter: HomePresenter) {
         self.presenter = presenter
     }
 
-    func fetchWeather() {
-        HomeGateway().request(for: HomeGateway.APIRoute.forecast(lat: 34.0522, lng: 118.2437)) { (result) in
+    func fetchWeather(lat: CLLocationDegrees, lng: CLLocationDegrees) {
+        HomeGateway().request(for: HomeGateway.APIRoute.forecast(lat: lat, lng: lng)) { (result) in
             switch result {
             case .success(let json):
                 guard let week = self.parse(json: json) else { return }
@@ -33,16 +36,24 @@ final class HomeInteractorClass: NSObject, HomeInteractor {
         }
     }
 
+    @objc
     func askUserLocationPermission() {
+        locationManager.requestWhenInUseAuthorization()
+        startUpdatingLocation()
+    }
+
+    func startUpdatingLocation() {
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
     }
 
     private func parse(json: Data) -> Dailies? {
         let decoder = JSONDecoder()
-
         do {
-            let dailies = try decoder.decode(Dailies.self, from: json)
-            print(dailies)
-            return dailies
+            return try decoder.decode(Dailies.self, from: json)
         } catch let error {
             print(error)
             return nil
@@ -51,4 +62,11 @@ final class HomeInteractorClass: NSObject, HomeInteractor {
 }
 
 extension HomeInteractorClass: UITableViewDelegate {
+}
+
+extension HomeInteractorClass: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = manager.location?.coordinate else { return }
+        fetchWeather(lat: location.latitude, lng: location.longitude)
+    }
 }

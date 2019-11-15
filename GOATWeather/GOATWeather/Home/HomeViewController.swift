@@ -73,8 +73,6 @@ final class HomeViewController: UIViewController {
         case .authorizedWhenInUse, .authorizedAlways, .restricted: return
         @unknown default: fatalError("Unknown default authorization status")
         }
-        guard CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse else { return }
-
     }
 
     func refreshTableView(with current: Currently) {

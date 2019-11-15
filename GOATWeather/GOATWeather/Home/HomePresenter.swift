@@ -30,6 +30,9 @@ final class HomePresenterClass: NSObject, HomePresenter {
 
     func refreshWeather(with dailies: [Daily], current: Currently) {
         self.dailies = dailies
+        if !dailies.isEmpty {
+            viewController.navigationItem.rightBarButtonItem = nil
+        }
         viewController.refreshTableView(with: current)
     }
 

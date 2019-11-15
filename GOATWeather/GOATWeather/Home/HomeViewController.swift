@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class HomeViewController: UIViewController {
     var navigator: HomeNavigator?
@@ -39,6 +40,9 @@ final class HomeViewController: UIViewController {
         self.interactor = interactor
         tableView.delegate = interactor
 
+        guard let navigationController = navigationController else { fatalError("This HomeViewController must be embedded in a UINavigationViewController")}
+        navigator = HomeNavigator(navigationController: navigationController)
+
         view.backgroundColor = .white
         view.addSubview(header)
         view.addSubview(tableView)
@@ -59,6 +63,7 @@ final class HomeViewController: UIViewController {
     }
 
     private func configureNavBar() {
+        guard !CLLocationManager.locationServicesEnabled() else { return }
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Authorize", style: .done, target: self, action: #selector(requestUserLocationPermission))
     }
 

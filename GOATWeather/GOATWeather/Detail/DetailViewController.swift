@@ -9,10 +9,12 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-    private let daily: Daily
+    private let navigator: HomeNavigator
+    private let presenter: DetailPresenter
 
-    init(daily: Daily) {
-        self.daily = daily
+    init(navigator: HomeNavigator, presenter: DetailPresenterClass) {
+        self.navigator = navigator
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
 

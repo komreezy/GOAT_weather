@@ -62,6 +62,10 @@ final class HomeInteractorClass: NSObject, HomeInteractor {
 }
 
 extension HomeInteractorClass: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter.showDetail(for: indexPath)
+    }
 }
 
 extension HomeInteractorClass: CLLocationManagerDelegate {

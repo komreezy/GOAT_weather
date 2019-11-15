@@ -13,6 +13,7 @@ protocol HomePresenter {
     var dailies: [Daily] { get set }
 
     func refreshWeather(with dailies: [Daily], current: Currently)
+    func showDetail(for index: IndexPath)
 }
 
 final class HomePresenterClass: NSObject, HomePresenter {
@@ -26,6 +27,11 @@ final class HomePresenterClass: NSObject, HomePresenter {
     func refreshWeather(with dailies: [Daily], current: Currently) {
         self.dailies = dailies
         viewController.refreshTableView(with: current)
+    }
+
+    func showDetail(for index: IndexPath) {
+        let daily = dailies[index.row]
+        viewController.navigator?.route(to: .detail(daily))
     }
 }
 

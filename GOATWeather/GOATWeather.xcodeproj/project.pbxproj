@@ -30,6 +30,7 @@
 		69D507A0237E0E0000E0A82C /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5079F237E0E0000E0A82C /* HomeTableViewCell.swift */; };
 		69D507A2237E0E3100E0A82C /* PaddingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D507A1237E0E3100E0A82C /* PaddingView.swift */; };
 		69D507A4237EDE0E00E0A82C /* CurrentWeatherHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D507A3237EDE0E00E0A82C /* CurrentWeatherHeaderView.swift */; };
+		69D507A6237EFDAF00E0A82C /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D507A5237EFDAF00E0A82C /* DetailPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		69D5079F237E0E0000E0A82C /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		69D507A1237E0E3100E0A82C /* PaddingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingView.swift; sourceTree = "<group>"; };
 		69D507A3237EDE0E00E0A82C /* CurrentWeatherHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherHeaderView.swift; sourceTree = "<group>"; };
+		69D507A5237EFDAF00E0A82C /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		ABAC26A9173EE443645D1E4E /* Pods-GOATWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOATWeatherTests.release.xcconfig"; path = "Target Support Files/Pods-GOATWeatherTests/Pods-GOATWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		B596FDBBB370B214120FA47A /* Pods_GOATWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GOATWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D991E19BC9F155244A5F2A5F /* Pods-GOATWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GOATWeather.debug.xcconfig"; path = "Target Support Files/Pods-GOATWeather/Pods-GOATWeather.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				69D50795237DE61200E0A82C /* DetailViewController.swift */,
+				69D507A5237EFDAF00E0A82C /* DetailPresenter.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				69D50790237DDD5D00E0A82C /* AppEnvironment.swift in Sources */,
 				69D50783237DD21400E0A82C /* HomeViewController.swift in Sources */,
 				69D5078A237DD44800E0A82C /* Daily.swift in Sources */,
+				69D507A6237EFDAF00E0A82C /* DetailPresenter.swift in Sources */,
 				69D5078E237DD7DE00E0A82C /* API.swift in Sources */,
 				69D50792237DE45600E0A82C /* HomeNavigator.swift in Sources */,
 				69D5078C237DD7CC00E0A82C /* HomeGateway.swift in Sources */,
